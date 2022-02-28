@@ -7,9 +7,13 @@ export const getAllUsers = () => dispatch => {
     axios
         .get("/api/users/get_all_users")
         .then(res => {
-            localStorage.setItem("usersList", JSON.stringify(res.data))
-            dispatch(setAllUsers(res.data))
-            dispatch(setParamIsLoaded(false))
+
+            Promise.resolve(localStorage.setItem("usersList", JSON.stringify(res.data)))
+                .then(() => Promise.resolve(dispatch(setAllUsers(res.data)))
+                    .then(() =>
+                        dispatch(setParamIsLoaded(false))
+                    )
+                )
         })
 }
 

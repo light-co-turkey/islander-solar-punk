@@ -13,7 +13,7 @@ const imgStyles = { maxWidth: "1.8rem", maxHeight: "1.8rem", margin: "auto" }
 
 const authToggle = {
   color: "white",
-  backgroundColor: "#65A3FF"
+  backgroundColor: "#00ba0c"
 }
 
 const CNavbar = props => {
@@ -39,8 +39,8 @@ const CNavbar = props => {
       return (
         <>
           <a href="#/panel" className="dfc button-circle mlra">
-            <PanelBtn style={imgStyles} fill={clientLoc === "/panel" ? "#65A3FF" : "white"} />
-            <p className="f-07 td-n mt-1" style={clientLoc === "/panel" ? { color: "#65A3FF" } : { color: "white" }}>panel</p>
+            <PanelBtn style={imgStyles} fill={clientLoc === "/panel" ? "#00ba0c" : "white"} />
+            <p className="f-07 td-n mt-1" style={clientLoc === "/panel" ? { color: "#00ba0c" } : { color: "white" }}>panel</p>
           </a>
         </>
       )
@@ -50,12 +50,12 @@ const CNavbar = props => {
   const GuestGreeting = () => (
     <div className="avatar-nav">
       <a href="#/" className="">
-        <FarmBtn style={imgStyles} fill={clientLoc === "/" ? "#65A3FF" : "white"} />
-        <p className="f-3 td-n" style={clientLoc === "/" ? { color: "#65A3FF" } : { color: "white" }}>landing</p>
+        <FarmBtn style={imgStyles} fill={clientLoc === "/" ? "#00ba0c" : "white"} />
+        <p className="f-3 td-n" style={clientLoc === "/" ? { color: "#00ba0c" } : { color: "white" }}>landing</p>
       </a>
       <a href="#/posts" className="">
-        <NewsBtn style={imgStyles} fill={clientLoc === "/posts" ? "#65A3FF" : "white"} />
-        <p className="f-3 td-n" style={clientLoc === "/posts" ? { color: "#65A3FF" } : { color: "white" }}>posts</p>
+        <NewsBtn style={imgStyles} fill={clientLoc === "/posts" ? "#00ba0c" : "white"} />
+        <p className="f-3 td-n" style={clientLoc === "/posts" ? { color: "#00ba0c" } : { color: "white" }}>posts</p>
       </a>
       <span className="df">
         <LinkTextBtn variant="info" href="#/signup" style={clientLoc === "/signup" ? authToggle : null}
@@ -69,16 +69,16 @@ const CNavbar = props => {
   const UserGreeting = () => (
     <div className="avatar-nav">
       <a href="#/" className="">
-        <FarmBtn style={imgStyles} fill={clientLoc === "/" ? "#65A3FF" : "white"} />
-        <p className="f-3 td-n" style={clientLoc === "/" ? { color: "#65A3FF" } : { color: "white" }}>landing</p>
+        <FarmBtn style={imgStyles} fill={clientLoc === "/" ? "#00ba0c" : "white"} />
+        <p className="f-3 td-n" style={clientLoc === "/" ? { color: "#00ba0c" } : { color: "white" }}>landing</p>
       </a>
       <a href="#/posts" className="">
-        <NewsBtn style={imgStyles} fill={clientLoc === "/posts" ? "#65A3FF" : "white"} />
-        <p className="f-3 td-n" style={clientLoc === "/posts" ? { color: "#65A3FF" } : { color: "white" }}>posts</p>
+        <NewsBtn style={imgStyles} fill={clientLoc === "/posts" ? "#00ba0c" : "white"} />
+        <p className="f-3 td-n" style={clientLoc === "/posts" ? { color: "#00ba0c" } : { color: "white" }}>posts</p>
       </a>
       <a href="#/profile" className="">
-        <ProfileBtn style={imgStyles} fill={clientLoc === "/profile" ? "#65A3FF" : "white"} />
-        <p className="f-3 td-n" style={clientLoc === "/profile" ? { color: "#65A3FF" } : { color: "white" }}>profile</p>
+        <ProfileBtn style={imgStyles} fill={clientLoc === "/profile" ? "#00ba0c" : "white"} />
+        <p className="f-3 td-n" style={clientLoc === "/profile" ? { color: "#00ba0c" } : { color: "white" }}>profile</p>
       </a>
       {AdminPanel()}
     </div>

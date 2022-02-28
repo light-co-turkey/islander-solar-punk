@@ -16,11 +16,11 @@ export const Landing = e => {
 
     let style= {
         width: "100%",
-        height: "max-content"
+        height: "auto"
     }
 
     return (
-        <div style={{maxWidth: "1000px"}} className=' mlra'>
+        <div style={{maxWidth: "800px"}} className=' mlra'>
             <img style={style} src={Pdf} />
             <img style={style} src={Pdf1} />
             <img style={style} src={Pdf2} />

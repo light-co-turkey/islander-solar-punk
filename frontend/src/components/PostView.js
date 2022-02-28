@@ -74,7 +74,7 @@ const PostView = () => {
     };
 
     return (
-        <>{!isLoaded || !param.isLoaded ? <Loading /> : <div className="dfc jc-c ai-c w-100 pbt-3">
+        <>{!isLoaded ? <Loading /> : <div className="dfc jc-c ai-c w-100 pbt-3">
             <div className="df jc-c ai-c pbt-2">
                 {!userInfo ? null : <TextBtn disabled={!userInfo} variant={!state[id] ? "warning" : "info"} size="sm" onClick={() => { !state[id] ? onEditClick() : setState({}) }}>{!state[id] ? "Edit" : "Back"}</TextBtn>}
                 {!state[id] ? null : <TextBtn variant="warning" className="ml-2" size="sm" disabled={!userInfo} onClick={() => { dispatch(deletePost({ id: postMeta.id, posts: posts.posts })) }}>Del</TextBtn>}

@@ -11,7 +11,7 @@ export const getAllUsers = () => dispatch => {
             Promise.resolve(localStorage.setItem("usersList", JSON.stringify(res.data)))
                 .then(() => Promise.resolve(dispatch(setAllUsers(res.data)))
                     .then(() =>
-                        dispatch(setParamIsLoaded(false))
+                        dispatch(setParamIsLoaded(true))
                     )
                 )
         })

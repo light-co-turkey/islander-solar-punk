@@ -1,0 +1,27 @@
+//Navbar
+.brand {
+  margin: auto;
+  height: 20vw;
+  max-height: 3rem;
+}
+.nav-div {
+  width: 100vw;
+  padding: 0;
+  background-color: #393F3F/* #363537 */;
+  min-height: 4rem;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.nav-inner-div {
+  display: flex;
+  padding:  .5rem 1vw 0.5rem 1vw;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+.avatar-nav {
+  padding: 0 5vw 0 5vw;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}

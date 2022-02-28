@@ -1,0 +1,14 @@
+input {
+    border: 1px solid;
+}
+
+input:focus, textarea:focus, select:focus{
+    outline: none;
+    border: 1px solid #65A3FF !important;
+}
+
+.input-c {
+    padding: 0 0.66rem;
+    text-align: center;
+    height: 1.5rem;
+}

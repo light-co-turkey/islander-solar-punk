@@ -44,8 +44,8 @@ app.use(passport.initialize());
 // Passport config
 require("./config/passport")(passport);
 
-const hostname = '127.0.0.1';
-const port = process.env.PORT || 5000;
+const hostname = 'localhost';
+const port = 5000;
 
 app.listen(port, hostname, () => {
   console.log(`Server up and running at ${hostname}:${port} !`);

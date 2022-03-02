@@ -1,5 +1,5 @@
 import {
-  SET_PARAM_IS_LOADED, SET_USERS_LIST
+  SET_PARAM_IS_LOADED, SET_USERS_LIST, ADD_TO_USERS_LIST
 } from "../actions/types";
 
 let usersList = localStorage.usersList == null ? [] : JSON.parse(localStorage.usersList)
@@ -16,6 +16,11 @@ export default function (state = initialState, action) {
         ...state,
         isLoaded: action.payload
       };
+    case ADD_TO_USERS_LIST:
+      return {
+        ...state,
+        usersList: [...state.usersList, action.payload]
+      }
     case SET_USERS_LIST:
       return {
         ...state,

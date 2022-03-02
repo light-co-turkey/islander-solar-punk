@@ -41,8 +41,10 @@ export const getMedia = x => dispatch => {
 
 // Delete Media
 export const deleteMedia = (x) => {
-    axios.post(`/api/medias/remove_media/${x}`)
+    let mediaId = x
+    console.log(mediaId)
+    axios.post(`/api/medias/remove_media/${mediaId}`)
         .then((res) => {
-            return res.json(true)
+            return res.json("Successfully Deleted!")
         });
 };

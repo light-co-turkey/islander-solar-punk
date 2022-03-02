@@ -3,6 +3,9 @@ export let mongoDateToHuman = e => {
   return new Intl.DateTimeFormat('en-US', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit' }).format(mils.getTime())
 }
 
+export const asyncFilter = async (arr, predicate) => Promise.all(arr.map(predicate))
+	.then((results) => arr.filter((_v, index) => results[index]));
+
 export const arrayBuffertoBase64 = file => new Promise((resolve, reject) => {
   const reader = new FileReader();
   reader.readAsDataURL(file);

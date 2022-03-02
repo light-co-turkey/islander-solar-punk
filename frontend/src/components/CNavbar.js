@@ -50,12 +50,12 @@ const CNavbar = props => {
   const GuestGreeting = () => (
     <div className="avatar-nav">
       <a href="#/" className="">
-        <FarmBtn style={imgStyles} fill={clientLoc === "/" ? "#00ba0c" : "white"} />
-        <p className="f-3 td-n" style={clientLoc === "/" ? { color: "#00ba0c" } : { color: "white" }}>landing</p>
+        <NewsBtn style={imgStyles} fill={clientLoc === "/" ? "#00ba0c" : "white"} />
+        <p className="f-3 td-n" style={clientLoc === "/" ? { color: "#00ba0c" } : { color: "white" }}>posts</p>
       </a>
-      <a href="#/posts" className="">
-        <NewsBtn style={imgStyles} fill={clientLoc === "/posts" ? "#00ba0c" : "white"} />
-        <p className="f-3 td-n" style={clientLoc === "/posts" ? { color: "#00ba0c" } : { color: "white" }}>posts</p>
+      <a href="#/info" className="">
+        <FarmBtn style={imgStyles} fill={clientLoc === "/info" ? "#00ba0c" : "white"} />
+        <p className="f-3 td-n" style={clientLoc === "/info" ? { color: "#00ba0c" } : { color: "white" }}>info</p>
       </a>
       <span className="df">
         <LinkTextBtn variant="info" href="#/signup" style={clientLoc === "/signup" ? authToggle : null}
@@ -69,12 +69,12 @@ const CNavbar = props => {
   const UserGreeting = () => (
     <div className="avatar-nav">
       <a href="#/" className="">
-        <FarmBtn style={imgStyles} fill={clientLoc === "/" ? "#00ba0c" : "white"} />
-        <p className="f-3 td-n" style={clientLoc === "/" ? { color: "#00ba0c" } : { color: "white" }}>landing</p>
+        <NewsBtn style={imgStyles} fill={clientLoc === "/" ? "#00ba0c" : "white"} />
+        <p className="f-3 td-n" style={clientLoc === "/" ? { color: "#00ba0c" } : { color: "white" }}>posts</p>
       </a>
-      <a href="#/posts" className="">
-        <NewsBtn style={imgStyles} fill={clientLoc === "/posts" ? "#00ba0c" : "white"} />
-        <p className="f-3 td-n" style={clientLoc === "/posts" ? { color: "#00ba0c" } : { color: "white" }}>posts</p>
+      <a href="#/info" className="">
+        <FarmBtn style={imgStyles} fill={clientLoc === "/info" ? "#00ba0c" : "white"} />
+        <p className="f-3 td-n" style={clientLoc === "/info" ? { color: "#00ba0c" } : { color: "white" }}>info</p>
       </a>
       <a href="#/profile" className="">
         <ProfileBtn style={imgStyles} fill={clientLoc === "/profile" ? "#00ba0c" : "white"} />

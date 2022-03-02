@@ -11,21 +11,11 @@ import PostMetaView from './PostMetaView';
 const PostsList = (props) => {
   const dispatch = useDispatch()
   const post = useSelector(state => state.post)
-  const param = useSelector(state => state.param)
-  const [state, setState] = useState({});
   const [errorMsg, setErrorMsg] = useState('');
-  const [editorState, setEditorState] = useState(() =>
-    EditorState.createEmpty()
-  );
 
   useEffect(() => {
     if (post.isLoaded) { } else return dispatch(getAllPost());
   }, []);
-
-  const handleEditPost = (postData) => {
-    dispatch(editPost(postData))
-    setState({})
-  };
 
   return (
     <div>
@@ -39,19 +29,7 @@ const PostsList = (props) => {
                 const id = i._id
                 const contentState = convertFromRaw(JSON.parse(i.draftJsRaw));
                 const viewEditorState = EditorState.createWithContent(contentState);
-
-                const onEditorChange = (editorState) => {
-                  const contentState = editorState.getCurrentContent();
-                  setState({ ...state, [id]: { ...state[id], draftJsRaw: convertToRaw(contentState) } });
-                  setEditorState(editorState);
-                }
-
-                const onEditClick = () => {
-                  setState({ ...state, [id]: { id: id, edit: true, draftJsRaw: i.draftJsRaw } })
-                  setEditorState(viewEditorState);
-                }
-
-                const userInfo = param.usersList.filter(x => x._id === i.createdBy)[0]
+                
                 const postMeta = {
                   createdAt: i.createdAt,
                   createdBy: i.createdBy
@@ -60,8 +38,8 @@ const PostsList = (props) => {
                 return (
                   <div className="dfc jc-c ai-c w-100 pbt-3" key={id}>
                     <div className="df jc-c ai-c pbt-2">
-                      <LinkTextBtn className="ml-2" variant="info" href={"/#/post/" + id} size="sm" onClick={() => { !state[id] ? onEditClick() : setState({}) }}>View</LinkTextBtn>
-                      <PostMetaView className="ml-3" isLoaded={post.isLoaded} postMeta={postMeta} usersList={param.usersList} />
+                      <LinkTextBtn className="ml-2" variant="info" href={"/#/post/" + id} size="sm">View</LinkTextBtn>
+                      <PostMetaView className="ml-3" isLoaded={post.isLoaded} postMeta={postMeta} />
                     </div>
                     <div style={{ padding: '2px', minHeight: 'max-content', width: "100%" }}>
                       <Editor toolbarHidden editorState={viewEditorState} readOnly={true} />

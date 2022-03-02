@@ -66,8 +66,6 @@ const App = () => {
   const themeMode = theme === 'light' ? lightTheme : darkTheme;
 
   useEffect(() => {
-    console.log()
-    if (localStorage.usersList == null) { dispatch(getAllUsers()) } else { dispatch(setParamIsLoaded(true)) }
     if (!auth.isAuthenticated) { } else { dispatch(getUser(auth.user.id)) }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth.isAuthenticated, param.isLoaded])
@@ -80,14 +78,14 @@ const App = () => {
           <CNavbar theme={theme} toggleTheme={themeToggler} location={location} />
           <div style={appBody}>
             <Switch>
-              <Route exact path='/'><Landing /></Route>
-              <Route exact path='/posts'>{!param.isLoaded ? null : <Posts />}</Route>
+              <Route exact path='/'><Posts /></Route>
+              <Route exact path='/info'><Landing /></Route>
               <Route exact path="/signup"><SignUp /></Route>
               <Route exact path="/login"><Login /></Route>
               <Route exact path="/forgotpassword"><ForgotPassword /></Route>
               <Route path="/reset/:token"><NewPassword /></Route>
-              <Route exact path='/profile'>{!param.isLoaded ? null : <Profile />}</Route>
-              <Route path="/post/:id">{!param.isLoaded ? null : <PostView />}</Route>
+              <Route exact path='/profile'><Profile /></Route>
+              <Route path="/post/:id"><PostView /></Route>
               <Switch>
                 <Route><NotFound /></Route>
               </Switch>

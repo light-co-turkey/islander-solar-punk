@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { Editor } from "react-draft-wysiwyg";
 import { convertFromRaw, convertToRaw, EditorState } from 'draft-js';
 import axios from "axios";
@@ -13,6 +13,7 @@ import { LinkTextBtn, TextBtn } from "./ui/Buttons";
 
 const PostView = () => {
     const dispatch = useDispatch()
+    const history = useHistory();
     const { id } = useParams();
     const param = useSelector(state => state.param)
     const posts = useSelector(state => state.post)
@@ -67,19 +68,28 @@ const PostView = () => {
     }
 
     const handleEditPost = () => {
-        let postData = { ...state[id], draftJsRaw: JSON.stringify(state[id].draftJsRaw) }
-        setPost(editorStateR(postData.draftJsRaw))
-        dispatch(editPost(postData))
-        setState({})
+        if (window.confirm("Are you sure?")){
+            let postData = { ...state[id], draftJsRaw: JSON.stringify(state[id].draftJsRaw) }
+            setPost(editorStateR(postData.draftJsRaw))
+            dispatch(editPost(postData))
+            setState({})
+        }
     };
+
+    const handleDelPost = () => {
+        let list = posts.posts
+        if (window.confirm("Are you sure?")) {
+            dispatch(deletePost(id, list, history))
+        }
+    }
 
     return (
         <>{!isLoaded ? <Loading /> : <div className="dfc jc-c ai-c w-100 pbt-3">
             <div className="df jc-c ai-c pbt-2">
                 {!userInfo ? null : <TextBtn disabled={!userInfo} variant={!state[id] ? "warning" : "info"} size="sm" onClick={() => { !state[id] ? onEditClick() : setState({}) }}>{!state[id] ? "Edit" : "Back"}</TextBtn>}
-                {!state[id] ? null : <TextBtn variant="warning" className="ml-2" size="sm" disabled={!userInfo} onClick={() => { dispatch(deletePost({ id: postMeta.id, posts: posts.posts })) }}>Del</TextBtn>}
+                {!state[id] ? null : <TextBtn variant="warning" className="ml-2" size="sm" disabled={!userInfo} onClick={() => handleDelPost()}>Del</TextBtn>}
                 {!state[id] ? null : (state[id].edit ? <TextBtn variant="info" size="sm" className="ml-2"
-                    onClick={() => { handleEditPost() }}>Save</TextBtn> : null)}
+                    disabled={!state[id].draftJsRaw} onClick={() => { handleEditPost() }}>Save</TextBtn> : null)}
                 <PostMetaView className="ml-3" isLoaded={isLoaded} postMeta={postMeta} usersList={param.usersList} />
             </div>
             {!state[id] ?

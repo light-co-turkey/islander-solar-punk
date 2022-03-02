@@ -3,7 +3,7 @@ import Loading from './Loading';
 import { deleteMedia, getMedia } from '../actions/mediaActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { TextBtn } from './ui/Buttons';
-import { useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { setUserProps } from '../actions/userActions';
 
 const ViewImage = props => {
@@ -45,6 +45,7 @@ const ViewImage = props => {
         filter().then((x) => {
             if (x.mediaBuffer) {
                 dispatch(setUserProps(newProps))
+                setId(x._id)
                 handleSets(x)
                     .then(setIsLoaded(true))
             } else {

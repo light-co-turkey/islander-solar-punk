@@ -24,8 +24,8 @@ router.post("/createpost", (req, res) => {
 	});
 
 	post.save()
-		.then(() => {s
-			res.json({ message: "Post created successfully" });
+		.then(() => {
+			res.json(post);
 		})
 		.catch((err) => {
 			res.json(err)

@@ -23,7 +23,7 @@ const { stringify } = require("querystring");
 // @route Get User
 router.get('/get_user/:userId', (req, res) => {
   let userId = req.params.userId
-  User.findOne({ "_id": mongoose.Types.ObjectId(userId) }, (error, data) => {
+  User.findOne({ "_id": mongoose.Types.ObjectId(userId) }, {_id: 1, name: 1, surname: 1, email: 1, username: 1}, (error, data) => {
     if (error) {
       return console.log(error)
     } else {

@@ -1,15 +1,29 @@
 import axios from "axios";
 
-import { SET_POSTS_IS_LOADED, SET_POSTS, GET_ERRORS } from "./types";
+import * as types from "./types";
 
 // Post Post
-export const submitPost = x => dispatch => {
+export const submitPost = (createdBy, draftJsRaw, setCount) => dispatch => {
     dispatch(setPostsIsLoaded(false))
-    axios.post(`/api/posts/createpost`, { draftJsRaw: x.draftJsRaw, createdBy: x.createdBy })
-        .then(res => 
-            dispatch(getAllPost())
-            /* dispatch(setPostsIsLoaded(true)) */)
-            .catch(err => console.log(err) );
+    axios.post(`/api/posts/createpost`, { draftJsRaw, createdBy })
+        .then(res => {
+            dispatch(addToPosts(res.data))
+            dispatch(setPostsIsLoaded(true))
+            setCount(1)
+        })
+        .catch(err => console.log(err));
+};
+
+export const getPost = x => dispatch => {
+    let postId = x
+    dispatch(setPostsIsLoaded(false))
+    axios
+        .get(`/api/posts/get_post/${postId}`)
+        .then(res => {
+            let data = res.data
+            dispatch(addToPosts(data))
+            dispatch(setPostsIsLoaded(true))
+        })
 };
 
 // Post Post
@@ -20,7 +34,7 @@ export const getAllPost = x => dispatch => {
             dispatch(setPosts(res.data.posts));
             dispatch(setPostsIsLoaded(true))
         })
-        .catch(err => console.log(err) );
+        .catch(err => console.log(err));
 };
 
 // Post Post
@@ -29,24 +43,26 @@ export const editPost = postData => (dispatch) => {
         .then((res) => {
             dispatch(getAllPost());
         })
-        .catch(err => console.log(err) );
+        .catch(err => console.log(err));
 };
 
 // Delete Post
-export const deletePost = (x) => dispatch => {
-    axios.post(`/api/posts/deletepost/${x.id}`)
-      .then((res) => {
-        const newData = x.posts.filter((item) => {
-          return item._id !== res.data;
+export const deletePost = (id, list, history) => dispatch => {
+    console.log(id)
+    axios.post(`/api/posts/deletepost/${id}`)
+        .then((res) => {
+            const newData = list.filter((item) => {
+                return item._id !== res.data;
+            });
+            dispatch(setPosts(newData));
+            history.push("/posts")
         });
-        dispatch(setPosts(newData));
-      });
-  };
+};
 
 //Set Is Loaded
 export const setPostsIsLoaded = e => {
     return {
-        type: SET_POSTS_IS_LOADED,
+        type: types.SET_POSTS_IS_LOADED,
         payload: e
     }
 }
@@ -54,7 +70,15 @@ export const setPostsIsLoaded = e => {
 //Set Is Loaded
 export const setPosts = e => {
     return {
-        type: SET_POSTS,
+        type: types.SET_POSTS,
+        payload: e
+    }
+}
+
+//Set Is Loaded
+export const addToPosts = e => {
+    return {
+        type: types.ADD_TO_POSTS,
         payload: e
     }
 }

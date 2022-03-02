@@ -12,10 +12,10 @@ const Posts = () => {
   ]
 
   return (
-    < div className="dfc jc-c ai-c" style={{ minHeight: "calc(100vh - 15rem)"}}>
+    < div className="dfc ai-c" style={{ minHeight: "calc(100vh - 15rem)"}}>
       <ToggleSwitch onSwitch={setCount} value={count} className="h-2 w-80 ml-3 mxw-400" fieldList={fieldList} />
       {count !== 1 ? null : <div className="plr-2 w-100" style={{maxWidth: "100vw"}} ><PostList /></div>}
-      {count !== 2 ? null : <CreatePost />}
+      {count !== 2 ? null : <CreatePost setCount={setCount} />}
     </div >)
 };
 

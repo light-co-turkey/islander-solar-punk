@@ -1,5 +1,5 @@
 import {
-  SET_POSTS_IS_LOADED, SET_POSTS
+  SET_POSTS_IS_LOADED, SET_POSTS, ADD_TO_POSTS
 } from "../actions/types";
 
 const initialState = {
@@ -19,6 +19,11 @@ export default function (state = initialState, action) {
         ...state,
         posts: action.payload == null ? [] : action.payload
       };
+    case ADD_TO_POSTS:
+      return {
+        ...state,
+        posts: [action.payload, ...state.posts]
+      }
     default:
       return state;
   }

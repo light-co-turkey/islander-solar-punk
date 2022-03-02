@@ -11,8 +11,10 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 import Loading from "./Loading";
 import { submitPost } from '../actions/postActions';
+import { useHistory } from 'react-router-dom';
 
-const CreatePost = () => {
+const CreatePost = x => {
+    const { setCount } = x
     const dispatch = useDispatch()
     const auth = useSelector(state => state.auth)
     const post = useSelector(state => state.post)
@@ -28,7 +30,8 @@ const CreatePost = () => {
         setEditorState(editorState);
     }
 
-    const handleSubmitpost = () => dispatch(submitPost({ createdBy: auth.user.id, draftJsRaw: draftJsRaw }))
+    let createdBy = auth.user.id
+    const handleSubmitpost = () => dispatch(submitPost(createdBy, draftJsRaw, setCount ))
 
 
     return (

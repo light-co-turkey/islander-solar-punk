@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { handleUserCheck } from "../actions/paramActions";
 import { mongoDateToHuman } from "../utils/basicUtils";
 import Loading from "./Loading";
 import ViewImage from "./ViewImage";
 
 
 const PostMetaView = props => {
+    const { isLoaded, postMeta, className } = props;
+    const dispatch = useDispatch();
     const [userInfo, setUserInfo] = useState(null)
-    const { isLoaded, postMeta, usersList, className } = props;
+    const param = useSelector(state => state.param)
+    let usersList = param.usersList
     let createdBy = postMeta.createdBy
 
     useEffect(() => {
-        setUserInfo(usersList.filter(x => x._id === createdBy)[0])
-    }, [isLoaded]);
+        dispatch(handleUserCheck({ usersList, createdBy })).then(x => setUserInfo(x))
+    }, []);
 
     return (
         <>
@@ -21,7 +26,7 @@ const PostMetaView = props => {
                     <div className='df ai-c'>
                         <ViewImage isLoaded={isLoaded} createdBy={createdBy} userInfo={userInfo} usageType="userPI" size="sm" />
                         <span className='dfc ai-c jc-c ml-2'><p>{userInfo.name} {userInfo.surname}</p>
-                        <p>{"@" + userInfo.username}</p>
+                            <p>{"@" + userInfo.username}</p>
                         </span>
                     </div>}
                 <p className='ml-2 f-4'>{mongoDateToHuman(postMeta.createdAt)}</p>

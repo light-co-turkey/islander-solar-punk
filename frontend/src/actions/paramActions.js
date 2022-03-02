@@ -1,7 +1,6 @@
 import axios from "axios";
 
 import * as types from "./types";
-import { getUser } from "./userActions";
 
 export const getAllUsers = () => dispatch => {
     dispatch(setParamIsLoaded(false))
@@ -30,12 +29,10 @@ export const handleUserCheck = x => async dispatch => {
                 .then(res => {
                     dispatch(addToUsersList(res.data))
                     dispatch(setParamIsLoaded(true))
-                    console.log("get user: ", res.data)
                     return res.data
                 })
             return dataPromise
         } else {
-            console.log("filtered x: ", x)
             dispatch(setParamIsLoaded(true))
             return x
         }

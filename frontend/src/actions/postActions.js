@@ -11,7 +11,12 @@ export const submitPost = (createdBy, draftJsRaw, setCount) => dispatch => {
             dispatch(setPostsIsLoaded(true))
             setCount(1)
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+            return {
+                type: types.GET_ERRORS,
+                payload: err
+            }
+        });
 };
 
 export const getPost = x => dispatch => {

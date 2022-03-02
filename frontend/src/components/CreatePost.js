@@ -31,7 +31,11 @@ const CreatePost = x => {
     }
 
     let createdBy = auth.user.id
-    const handleSubmitpost = () => dispatch(submitPost(createdBy, draftJsRaw, setCount ))
+    const handleSubmitpost = () => {
+        if (window.confirm("Are you sure!")) {
+            dispatch(submitPost(createdBy, draftJsRaw, setCount))
+        }
+    }
 
 
     return (
@@ -45,7 +49,7 @@ const CreatePost = x => {
                     />
                 </div>
                 <TextBtn className="mt-3 mlra" size="md" variant="info"
-                    onClick={() => window.confirm("Are you sure!") ? handleSubmitpost() : null}>
+                    onClick={() => handleSubmitpost()}>
                     Submit
                 </TextBtn>
                 <div className="df w-100 jc-c p-5 mt-3">

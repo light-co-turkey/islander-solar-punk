@@ -16,8 +16,8 @@ export const Landing = e => {
 
     return (
         <div style={{maxWidth: "800px"}} className=' mlra'>
-            <img style={style} src={Pdf3} />
             <img style={style} src={Pdf4} />
+            <img style={style} src={Pdf3} />
         </div>
     )
 }

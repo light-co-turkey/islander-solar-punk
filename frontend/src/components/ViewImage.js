@@ -46,7 +46,7 @@ const ViewImage = props => {
         filter().then((x) => {
             if (x.mediaBuffer) {
                 dispatch(setUserProps(newProps))
-                setId(x._id)
+                setId(x.uPIId)
                 handleSets(x)
                     .then(setIsLoaded(true))
             } else {

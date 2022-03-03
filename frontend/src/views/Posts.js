@@ -15,14 +15,14 @@ const Posts = () => {
   ]
 
   let handleRefresh = () => {
-    
+    dispatch(getAllPost())
   }
 
   return (
-    < div className="dfc ai-c" style={{ minHeight: "calc(100vh - 15rem)" }}>
+    <div className="dfc ai-c" style={{ minHeight: "calc(100vh - 15rem)" }}>
       <span className='plr-2 df ai-c jc-c w-100'>
         <p className='mr-3'>Get Posts</p>
-        <RefreshArrow onClick={() => dispatch(getAllPost())} fill="#00ba0c" style={{ width: "2rem" }} />
+        <RefreshArrow onClick={() => handleRefresh()} fill="#00ba0c" style={{ width: "2rem" }} />
         <ToggleSwitch onSwitch={setCount} value={count} className="h-2 w-80 ml-3 mxw-400" fieldList={fieldList} />
       </span>
       {count !== 1 ? null : <div className="plr-2 w-100" style={{ maxWidth: "100vw" }} ><PostList /></div>}

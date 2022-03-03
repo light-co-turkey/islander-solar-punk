@@ -3,12 +3,12 @@ import { useHistory, useParams } from "react-router-dom";
 import { Editor } from "react-draft-wysiwyg";
 import { convertFromRaw, convertToRaw, EditorState } from 'draft-js';
 import axios from "axios";
-import { mongoDateToHuman } from "../utils/basicUtils";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "./Loading";
 import PostMetaView from "./PostMetaView";
 import { deletePost, editPost } from "../actions/postActions";
-import { LinkTextBtn, TextBtn } from "./ui/Buttons";
+import { TextBtn } from "./ui/Buttons";
+import CustomEditor from "./CustomEditor";
 
 
 const PostView = () => {
@@ -68,7 +68,7 @@ const PostView = () => {
     }
 
     const handleEditPost = () => {
-        if (window.confirm("Are you sure?")){
+        if (window.confirm("Are you sure?")) {
             let postData = { ...state[id], draftJsRaw: JSON.stringify(state[id].draftJsRaw) }
             setPost(editorStateR(postData.draftJsRaw))
             dispatch(editPost(postData))
@@ -96,19 +96,8 @@ const PostView = () => {
                 <div style={{ padding: '2px', minHeight: 'max-content', width: "100%" }}>
                     <Editor toolbarHidden editorState={post} readOnly={true} />
                 </div>
-                : <>
-                    <div className="mbt-3"
-                        style={{
-                            border: "1px solid black", padding: '2px', minHeight: 'max-content',
-                            backgroundColor: 'white', color: 'black'
-                        }}>
-                        {<Editor
-                            editorState={editorState}
-                            onEditorStateChange={onEditorChange}
-                            placeholder="Enter description"
-                        />}
-                    </div>
-                </>
+                :
+                <CustomEditor editorState={editorState} onEditorStateChange={onEditorChange} />
             }
         </div>}</>
     );

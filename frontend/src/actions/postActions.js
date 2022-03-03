@@ -60,7 +60,7 @@ export const deletePost = (id, list, history) => dispatch => {
                 return item._id !== res.data;
             });
             dispatch(setPosts(newData));
-            history.push("/posts")
+            history.push("/")
         });
 };
 

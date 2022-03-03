@@ -5,7 +5,7 @@ import { deletePost, editPost, getAllPost, setPosts, setPostsIsLoaded } from "..
 
 import Loading from "./Loading";
 import { Editor } from "react-draft-wysiwyg";
-import { convertFromRaw, convertToRaw, EditorState } from 'draft-js';
+import { convertFromRaw, EditorState } from 'draft-js';
 import PostMetaView from './PostMetaView';
 
 const PostsList = (props) => {

@@ -33,7 +33,7 @@ const PostMetaView = props => {
                         </span>
                         <p className='ml-2 f-4'>{mongoDateToHuman(postMeta.createdAt)}</p>
                     </div>}
-                <Share shareUrl={"solarpunks.dev/#/post/" + postMeta.id} title="Sharing From SolarPunks" />
+                <Share shareUrl={"https://solarpunks.dev/#/post/" + postMeta.id} title="Sharing From SolarPunks" />
             </div>}
         </>
     );

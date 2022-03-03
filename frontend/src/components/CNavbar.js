@@ -58,10 +58,8 @@ const CNavbar = props => {
         <p className="f-3 td-n" style={clientLoc === "/info" ? { color: "#00ba0c" } : { color: "white" }}>info</p>
       </a>
       <span className="df">
-        <LinkTextBtn variant="info" href="#/signup" style={clientLoc === "/signup" ? authToggle : null}
-          size="sm" >Sign Up</LinkTextBtn>
-        <LinkTextBtn variant="info" href="#/login" style={clientLoc === "/login" ? authToggle : null}
-          size="sm" className="ml-3">Log In</LinkTextBtn>
+        <LinkTextBtn variant="info" href="#/auth" style={clientLoc === "/auth" ? authToggle : null}
+          size="sm" >Sign/Login</LinkTextBtn>
       </span>
     </div>
   );

@@ -27,6 +27,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import PostView from './components/PostView';
 import { getAllUsers, setAllUsers, setParamIsLoaded } from './actions/paramActions';
 import { Landing } from './views/Landing';
+import { Auth } from './views/Auth';
 
 const appBody = {
   position: "relative",
@@ -82,6 +83,7 @@ const App = () => {
               <Route exact path='/info'><Landing /></Route>
               <Route exact path="/signup"><SignUp /></Route>
               <Route exact path="/login"><Login /></Route>
+              <Route exact path="/auth"><Auth /></Route>
               <Route exact path="/forgotpassword"><ForgotPassword /></Route>
               <Route path="/reset/:token"><NewPassword /></Route>
               <Route exact path='/profile'><Profile /></Route>

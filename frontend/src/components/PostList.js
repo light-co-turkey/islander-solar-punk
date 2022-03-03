@@ -31,6 +31,7 @@ const PostsList = (props) => {
                 const viewEditorState = EditorState.createWithContent(contentState);
                 
                 const postMeta = {
+                  id: id,
                   createdAt: i.createdAt,
                   createdBy: i.createdBy
                 }

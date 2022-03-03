@@ -11,7 +11,7 @@ const Posts = props => {
   
     let fieldList = [
       { text: "View", count: 1, href: "" },
-      { text: "SignUp to Post", href: "#/signup"}
+      { text: "Login to Post", href: "#/auth"}
     ]
 
   let fieldListAuth = [

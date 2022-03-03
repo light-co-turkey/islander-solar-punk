@@ -78,7 +78,7 @@ const App = () => {
           <CNavbar theme={theme} toggleTheme={themeToggler} location={location} />
           <div style={appBody}>
             <Switch>
-              <Route exact path='/'><Posts /></Route>
+              <Route exact path='/'><Posts isAuthenticated={auth.isAuthenticated} /></Route>
               <Route exact path='/info'><Landing /></Route>
               <Route exact path="/signup"><SignUp /></Route>
               <Route exact path="/login"><Login /></Route>

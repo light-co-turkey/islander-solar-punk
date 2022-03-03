@@ -160,16 +160,17 @@ button {background-color: inherit;}
     line-height: normal;
 }
 //TextListItem
-.fieldList div:first-child {
+.fieldList a:first-child {
   border-top-left-radius: 1rem;
   border-bottom-left-radius: 1rem;
   border-right: 0;
 }
-.fieldList div:last-child {
+.fieldList a:last-child {
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
 }
-.fieldList div {
+.fieldList a {
+  color: inherit !important;
   border: 1px solid #65A3FF;
   font-size: 1em;
   font-weight: 900;

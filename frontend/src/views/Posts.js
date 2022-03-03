@@ -5,11 +5,16 @@ import CreatePost from '../components/CreatePost';
 import PostList from '../components/PostList';
 import { ToggleSwitch, RefreshArrow } from '../components/ui/Buttons';
 
-const Posts = () => {
+const Posts = props => {
   const dispatch = useDispatch()
   const [count, setCount] = useState(1)
+  
+    let fieldList = [
+      { text: "View", count: 1, href: "" },
+      { text: "SignUp to Post", href: "#/signup"}
+    ]
 
-  let fieldList = [
+  let fieldListAuth = [
     { text: "View", count: 1, href: "" },
     { text: "Create", count: 2, href: "" }
   ]
@@ -23,7 +28,7 @@ const Posts = () => {
       <span className='plr-2 df ai-c jc-c w-100'>
         <p className='mr-3'>Get Posts</p>
         <RefreshArrow onClick={() => handleRefresh()} fill="#00ba0c" style={{ width: "2rem" }} />
-        <ToggleSwitch onSwitch={setCount} value={count} className="h-2 w-80 ml-3 mxw-400" fieldList={fieldList} />
+        <ToggleSwitch onSwitch={setCount} value={count} className="h-2 w-80 ml-3 mxw-400" fieldList={props.isAuthenticated ? fieldListAuth : fieldList} />
       </span>
       {count !== 1 ? null : <div className="plr-2 w-100" style={{ maxWidth: "100vw" }} ><PostList /></div>}
       {count !== 2 ? null : <CreatePost setCount={setCount} />}

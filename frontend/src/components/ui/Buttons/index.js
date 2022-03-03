@@ -147,10 +147,10 @@ export const ToggleSwitch = ({ onSwitch, value, className, variant, fieldList })
     return (
         <div className={className + " fieldList df " + variant}>
             {fieldList.map((x, index) => {
-                return <div /* href={!x.href ? null : x.href} */ onClick={() => { onSwitch(x.count) }}
+                return <a href={!x.href ? null : x.href} onClick={() => { onSwitch(x.count) }}
                     className="btn" style={{ width: width, backgroundColor: x.count == value ? "rgb(101, 163, 255, .5)" : "" }} key={index}>
                     {x.text}
-                </div>
+                </a>
             })}
         </div>
     )

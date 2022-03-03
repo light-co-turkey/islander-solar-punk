@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { TextBtn } from './ui/Buttons';
 import { useHistory, useLocation } from 'react-router-dom';
 import { setUserProps } from '../actions/userActions';
+import { nestUserPI } from '../actions/paramActions';
 
 const ViewImage = props => {
     const { createdBy, usageType, variant, size } = props
@@ -72,12 +73,14 @@ const ViewImage = props => {
 
     let handleOnRemoveClick = () => {
         if (window.confirm("Delete This Media!?")) {
-            deleteMedia(id);
-            handleSets({ mediaBuffer: null, mediaType: null })
-            if (checkVar) {
-                let newProps = { field: "pILoaded", prop: false }
-                dispatch(setUserProps(newProps))
-            }
+            dispatch(deleteMedia({ id, handleSets, setIsLoaded })).then(res => {
+                if (checkVar) {
+                    let newProps = { field: "pILoaded", prop: false }
+                    let medias = { mediaBuffer: null, mediaType: null }
+                    dispatch(setUserProps(newProps))
+                    dispatch(nestUserPI({ usersList, medias, createdBy }))
+                }
+            })
         }
     }
 
@@ -85,7 +88,7 @@ const ViewImage = props => {
     return (
         <>{!isLoaded ? <Loading /> :
             <>{!mediaEncode || !mediaType ? null :
-                <span className='dfc jc-c ai-c w-mc mlra'>
+                <span className='dfc jc-c ai-c w-mc mlra p-3'>
                     {clientLoc !== "/profile" ? null : <TextBtn className="mla" variant="warning" onClick={() => handleOnRemoveClick()}><b>X</b></TextBtn>}
                     <img className='bra-3' style={sizee} src={mediaEncode} alt="general-media" />
                 </span>}</>

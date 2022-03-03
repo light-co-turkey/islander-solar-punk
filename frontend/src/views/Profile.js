@@ -40,7 +40,7 @@ export const Profile = e => {
             {!user.isLoaded ? <Loading /> : 
             <div className="dfc jc-c p-3 mt-3">
                 {user.props.pILoaded ? null : <PostImage className="p-3" variant="profilePage" usageType="userPI" createdBy={user.raw._id}/>}
-                {!param.isLoaded ? null : <span className='p-3'><ViewImage size="lg" variant="profilePage" usageType="userPI" createdBy={user.raw._id} /></span>}
+                {!param.isLoaded ? null : <ViewImage size="lg" variant="profilePage" usageType="userPI" createdBy={user.raw._id} />}
                 <h5 className='pb-3'>{user.raw.name} {user.raw.surname}</h5>
                 <InputGroup className="pb-3">
                     <InputPrep variant="pillL">Username</InputPrep>

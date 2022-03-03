@@ -1,6 +1,7 @@
 import axios from "axios"
 import { nestUserPI, setAllUsers } from "./paramActions"
 import { setUserIsLoaded, setUserProps } from "./userActions"
+import * as types from "./types";
 
 export const postImage = x => dispatch => {
     const { mediaEncode, mediaType, usageType, createdBy, setIsLoaded } = x
@@ -40,11 +41,22 @@ export const getMedia = x => dispatch => {
 }
 
 // Delete Media
-export const deleteMedia = (x) => {
-    let mediaId = x
-    console.log(mediaId)
-    axios.post(`/api/medias/remove_media/${mediaId}`)
-        .then((res) => {
-            return res.json("Successfully Deleted!")
-        });
+export const deleteMedia = req => async dispatch => {
+    let { id, handleSets, setIsLoaded } = req
+    setIsLoaded(false)
+    let promise = axios.post(`/api/medias/remove_media/${id}`)
+        await promise.then(res => {
+            setIsLoaded(true)
+            let sets = { mediaBuffer: null, mediaType: null }
+            handleSets(sets)
+            return { msg: "Successfully Deleted!" }
+        })
+        .catch(err => {
+            setIsLoaded(true)
+            console.log(err)
+            dispatch({
+                type: types.GET_ERRORS,
+                payload: err.response.data
+            })
+        })
 };

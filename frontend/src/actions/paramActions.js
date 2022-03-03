@@ -45,7 +45,7 @@ export const handleUserCheck = x => async dispatch => {
 export const nestUserPI = y => dispatch => {
     const { usersList, createdBy, medias } = y
     dispatch(setAllUsers(usersList.map(x => (x._id === createdBy ?
-        { ...x, mediaBuffer: medias.mediaBuffer, mediaType: medias.mediaType } : x))))
+        { ...x, mediaBuffer: medias.mediaBuffer, mediaType: medias.mediaType, uPIId: medias.id } : x))))
 }
 
 export const setParamIsLoaded = x => {

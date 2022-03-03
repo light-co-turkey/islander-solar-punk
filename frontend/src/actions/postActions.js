@@ -53,7 +53,6 @@ export const editPost = postData => (dispatch) => {
 
 // Delete Post
 export const deletePost = (id, list, history) => dispatch => {
-    console.log(id)
     axios.post(`/api/posts/deletepost/${id}`)
         .then((res) => {
             const newData = list.filter((item) => {

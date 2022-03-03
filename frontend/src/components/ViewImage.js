@@ -76,7 +76,7 @@ const ViewImage = props => {
             dispatch(deleteMedia({ id, handleSets, setIsLoaded })).then(res => {
                 if (checkVar) {
                     let newProps = { field: "pILoaded", prop: false }
-                    let medias = { mediaBuffer: null, mediaType: null }
+                    let medias = { mediaBuffer: null, mediaType: null, uPIId: null }
                     dispatch(setUserProps(newProps))
                     dispatch(nestUserPI({ usersList, medias, createdBy }))
                 }

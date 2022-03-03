@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import { useSelector, useDispatch, useStore } from "react-redux";
-
-import { Input } from './ui/Inputs';
+import { useSelector, useDispatch } from "react-redux";
 import { TextBtn } from './ui/Buttons';
 
 import { Editor } from "react-draft-wysiwyg";
@@ -11,7 +8,6 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 import Loading from "./Loading";
 import { submitPost } from '../actions/postActions';
-import { useHistory } from 'react-router-dom';
 
 const CreatePost = x => {
     const { setCount } = x
@@ -41,7 +37,7 @@ const CreatePost = x => {
     return (
         <div>
             <form className="search-form dfc">
-                <div className="mbt-3" style={{ padding: '2px', minHeight: '300px', backgroundColor: 'white', color: "black" }}>
+                <div className="mbt-3 bra-1" style={{ padding: '2px', minHeight: '300px', borderBottom: "1px solid"}}>
                     <Editor
                         editorState={editorState}
                         onEditorStateChange={onEditorChange}

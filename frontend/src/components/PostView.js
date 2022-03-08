@@ -86,10 +86,12 @@ const PostView = () => {
     return (
         <>{!isLoaded ? <Loading /> : <div className="dfc jc-c ai-c w-100 pbt-3">
             <div className="df jc-c ai-c pbt-2">
+                <span className="dfc ai-c">
+                {!state[id] ? null : <TextBtn variant="warning" className="mb-2" size="sm" disabled={!userInfo} onClick={() => handleDelPost()}>Del</TextBtn>}
                 {!userInfo ? null : <TextBtn disabled={!userInfo} variant={!state[id] ? "warning" : "info"} size="sm" onClick={() => { !state[id] ? onEditClick() : setState({}) }}>{!state[id] ? "Edit" : "Back"}</TextBtn>}
-                {!state[id] ? null : <TextBtn variant="warning" className="ml-2" size="sm" disabled={!userInfo} onClick={() => handleDelPost()}>Del</TextBtn>}
-                {!state[id] ? null : (state[id].edit ? <TextBtn variant="info" size="sm" className="ml-2"
+                {!state[id] ? null : (state[id].edit ? <TextBtn variant="info" size="sm" className="mt-2"
                     disabled={!state[id].draftJsRaw} onClick={() => { handleEditPost() }}>Save</TextBtn> : null)}
+                </span>
                 <PostMetaView className="ml-3" isLoaded={isLoaded} postMeta={postMeta} usersList={param.usersList} />
             </div>
             {!state[id] ?

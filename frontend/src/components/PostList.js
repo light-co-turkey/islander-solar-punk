@@ -7,6 +7,7 @@ import Loading from "./Loading";
 import { Editor } from "react-draft-wysiwyg";
 import { convertFromRaw, EditorState } from 'draft-js';
 import PostMetaView from './PostMetaView';
+import CustomEditor from './CustomEditor';
 
 const PostsList = (props) => {
   const dispatch = useDispatch()
@@ -29,7 +30,7 @@ const PostsList = (props) => {
                 const id = i._id
                 const contentState = convertFromRaw(JSON.parse(i.draftJsRaw));
                 const viewEditorState = EditorState.createWithContent(contentState);
-                
+
                 const postMeta = {
                   id: id,
                   createdAt: i.createdAt,
@@ -42,9 +43,7 @@ const PostsList = (props) => {
                       <LinkTextBtn className="ml-2" variant="info" href={"/#/post/" + id} size="sm">View</LinkTextBtn>
                       <PostMetaView className="ml-3" isLoaded={post.isLoaded} postMeta={postMeta} />
                     </div>
-                    <div style={{ padding: '2px', minHeight: 'max-content', width: "100%" }}>
-                      <Editor toolbarHidden editorState={viewEditorState} readOnly={true} />
-                    </div>
+                    <CustomEditor toolbarHidden editorState={viewEditorState} readOnly={true} />
                   </div>
                 )
               }

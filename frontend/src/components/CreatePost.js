@@ -35,7 +35,7 @@ const CreatePost = x => {
 
     return (
         <div>
-            <CustomEditor editorState={editorState} onEditorStateChange={onEditorChange} />
+            <CustomEditor editorState={editorState} onEditorStateChange={onEditorChange} variant="create" />
             <TextBtn className="mt-3 mlra" size="md" variant="info"
                 onClick={() => handleSubmitpost()}>
                 Submit

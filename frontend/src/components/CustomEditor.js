@@ -6,23 +6,25 @@ import { TextBtn } from './ui/Buttons';
 const CustomEditor = (props) => {
     const { onEditorStateChange, editorState, variant, ...rest } = props
 
-    const [more, setMore] = useState(false)
+    const [more, setMore] = useState(true)
 
     useEffect(() => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    let varSet = !variant ? false : variant === "list" ? true : false
+
     return (<>
-        <div className="mbt-3 bra-1" style={{ padding: '2px', minHeight: '200px', border: "1px solid" }}>
+        <div className="" style={{ padding: '2px', minWidth: "150px"}}>
             <Editor
                 {...rest}
-                editorStyle={!more && !variant ? { maxHeight: "200px" } : {}}
+                editorStyle={!more ? {} : !varSet ? {} : { maxHeight: "100px", maxWidth: "250px" }}
                 editorState={editorState}
                 onEditorStateChange={onEditorStateChange}
-                placeholder="Enter description"
+                placeholder="Text goes here"
             />
+            {!varSet ? null : <TextBtn className="mlra mbt-2" variant="text-info" size="sm" onClick={() => setMore(!more)}>Show {!more ? "Less" : "More"}</TextBtn>}
         </div>
-        {!variant ? <TextBtn className="mlra mb-2" variant="info" size="sm" onClick={() => setMore(!more)}>Show {more ? "Less" : "More"}</TextBtn> : null}
     </>
     )
 }

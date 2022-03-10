@@ -32,6 +32,7 @@
   color: black;
 }
 
-/* .rdw-editor-main {
-  max-height: 200px !important;
-} */
+.rdw-editor-main {
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}

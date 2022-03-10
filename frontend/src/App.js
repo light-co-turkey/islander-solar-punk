@@ -34,7 +34,7 @@ const appBody = {
   top: "80px",
   maxWidth: "1200px",
   minHeight: "calc(100% - 64px - 10rem)",
-  padding: "1rem",
+  padding: ".5rem",
   margin: "auto"
 }
 

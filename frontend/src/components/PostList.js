@@ -24,7 +24,7 @@ const PostsList = (props) => {
         :
         <div>
           {errorMsg && <p className="errorMsg">{errorMsg}</p>}
-          <div className="dfc ai-c">
+          <div className="df ai-c jc-c fw">
             {post.isLoaded ? (
               post.posts.map((i) => {
                 const id = i._id
@@ -38,12 +38,11 @@ const PostsList = (props) => {
                 }
 
                 return (
-                  <div className="dfc jc-c ai-c w-100 pbt-3" key={id}>
-                    <div className="df jc-c ai-c pbt-2">
-                      <LinkTextBtn className="ml-2" variant="info" href={"/#/post/" + id} size="sm">View</LinkTextBtn>
-                      <PostMetaView className="ml-3" isLoaded={post.isLoaded} postMeta={postMeta} />
+                  <div className="dfc jc-c ai-c bra-1 b-i mt-2 m-2 p-1" key={id}>
+                    <div className="df jc-c ai-c bb-1 pb-2">
+                      <PostMetaView isLoaded={post.isLoaded} postMeta={postMeta} />
                     </div>
-                    <CustomEditor toolbarHidden editorState={viewEditorState} readOnly={true} />
+                    <CustomEditor toolbarHidden editorState={viewEditorState} readOnly={true} variant="list" />
                   </div>
                 )
               }

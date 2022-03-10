@@ -53,7 +53,7 @@ export const TextBtn = ({ children, onClick, className, variant, width,
                 color: color,
                 width: !width ? "max-content" : width,
                 borderWidth: !thick ? 3 : thick * 100,
-                borderStyle: "solid",
+                borderStyle: variant !== "text-info" ? "solid" : null,
                 ...style
             }}>
             <p style={{

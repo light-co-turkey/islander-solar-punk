@@ -84,7 +84,7 @@ const PostView = () => {
     }
 
     return (
-        <>{!isLoaded ? <Loading /> : <div className="dfc jc-c ai-c w-100 pbt-3">
+        <>{!isLoaded ? <Loading /> : <div className="dfc jc-c ai-c w-100">
             <div className="df jc-c ai-c pbt-2">
                 <span className="dfc ai-c">
                 {!state[id] ? null : <TextBtn variant="warning" className="mb-2" size="sm" disabled={!userInfo} onClick={() => handleDelPost()}>Del</TextBtn>}
@@ -99,7 +99,7 @@ const PostView = () => {
                     <Editor toolbarHidden editorState={post} readOnly={true} />
                 </div>
                 :
-                <CustomEditor editorState={editorState} onEditorStateChange={onEditorChange} />
+                <CustomEditor editorState={editorState} onEditorStateChange={onEditorChange} variant="edit" />
             }
         </div>}</>
     );

@@ -179,6 +179,15 @@ button {background-color: inherit;}
   align-items: center;
 }
 
+//Text Info
+.text-info {
+  border: none;
+  color: #00ba0c;
+  font-size: .5rem;
+}
+.text-info:hover {
+  opacity: .5;
+}
 //Info
 .info {
   color: #00ba0c;

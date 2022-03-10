@@ -1,10 +1,9 @@
 /* eslint-disable react/prefer-stateless-function */
 /* eslint-disable import/no-unresolved, import/extensions, import/no-extraneous-dependencies */
 import React, { Component } from 'react';
+import { useLocation } from 'react-router-dom';
 import {
     FacebookShareButton,
-    FacebookMessengerShareButton,
-    FacebookMessengerIcon,
     TwitterShareButton,
     TelegramShareButton,
     WhatsappShareButton,
@@ -17,12 +16,15 @@ import {
 } from 'react-share';
 
 import './Share.css';
+import { LinkTextBtn } from './ui/Buttons';
 
 const Share = props => {
-    const {shareUrl, title} = props
+    const {shareUrl, title, id} = props
+    const location = useLocation()
 
     return (
-        <div className="Demo__container pt-2">
+        <div className="Demo__container df pt-2">
+            {location.pathname === "/post/" + id ? null : <LinkTextBtn className="mr-2" variant="info" href={"/#/post/" + id} size="sm">View</LinkTextBtn>}
             <div className="Demo__some-network">
                 <FacebookShareButton
                     url={shareUrl}
@@ -32,16 +34,6 @@ const Share = props => {
                     <FacebookIcon size={32} round />
                 </FacebookShareButton>  
             </div>
-
-{/*             <div className="Demo__some-network">
-                <FacebookMessengerShareButton
-                    url={shareUrl}
-                    appId="521270401588372"
-                    className="Demo__some-network__share-button"
-                >
-                    <FacebookMessengerIcon size={32} round />
-                </FacebookMessengerShareButton>
-            </div> */}
 
             <div className="Demo__some-network">
                 <TwitterShareButton

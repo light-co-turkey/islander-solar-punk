@@ -26,7 +26,7 @@ const ViewImage = props => {
     let sizee = size === "lg" ? {
         width: "150px", height: "150px"
     } : size === "md" ? {
-        width: "100px", height: "100px"
+        width: "70px", height: "70px"
     } : {
         width: "50px", height: "50px"
     }
@@ -88,7 +88,7 @@ const ViewImage = props => {
     return (
         <>{!isLoaded ? <Loading /> :
             <>{!mediaEncode || !mediaType ? null :
-                <span className='dfc jc-c ai-c w-mc mlra p-3'>
+                <span className='dfc jc-c ai-c w-mc mlra'>
                     {clientLoc !== "/profile" ? null : <TextBtn className="mla" variant="warning" onClick={() => handleOnRemoveClick()}><b>X</b></TextBtn>}
                     <img className='bra-3' style={sizee} src={mediaEncode} alt="general-media" />
                 </span>}</>

@@ -27,11 +27,11 @@ const PostMetaView = props => {
                     <div className="df jc-c ai-c w-100">
                         <span className='df ai-c'>
                             <ViewImage isLoaded={isLoaded} createdBy={createdBy} userInfo={userInfo} usageType="userPI" size="sm" />
-                            <span style={{fontSize: ".5rem"}} className='dfc ai-c jc-c ml-2'><p>{userInfo.name} {userInfo.surname}</p>
+                            <span style={{ fontSize: ".5rem" }} className='dfc ai-c jc-c ml-2'><p>{userInfo.name} {userInfo.surname}</p>
                                 <p>{"@" + userInfo.username}</p>
+                                <p className='ml-2 f-4 bt-1 mt-1'>{mongoDateToHuman(postMeta.createdAt)}</p>
                             </span>
                         </span>
-                        <p className='ml-2 f-4'>{mongoDateToHuman(postMeta.createdAt)}</p>
                     </div>}
                 <Share shareUrl={"https://solarpunks.dev/#/post/" + postMeta.id} id={postMeta.id} title="Sharing From SolarPunks" />
             </div>}

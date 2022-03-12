@@ -12,18 +12,23 @@ const CustomEditor = (props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    let varSet = !variant ? false : variant === "list" ? true : false
+    let varSet = !variant ? false : variant === "list" || variant === "single" ? true : false
+
+    let editorStyle = {
+        ...(!more ? { minHeight: "200px" } : !varSet ? { minHeight: "200px" } : { maxHeight: "50px", maxWidth: "250px" }),
+        ...(varSet ? {} : { border: "1px solid", maxHeight: "370px" })
+    }
 
     return (<>
-        <div className="" style={{ padding: '2px', minWidth: "150px"}}>
+        <div className="" style={{ padding: '2px', minWidth: "150px" }}>
+            {!varSet ? null : <TextBtn className="mlra" variant="text-info" size="sm" onClick={() => setMore(!more)}>Show {!more ? "Less" : "More"}</TextBtn>}
             <Editor
                 {...rest}
-                editorStyle={!more ? {} : !varSet ? {} : { maxHeight: "100px", maxWidth: "250px" }}
+                editorStyle={editorStyle}
                 editorState={editorState}
                 onEditorStateChange={onEditorStateChange}
                 placeholder="Text goes here"
             />
-            {!varSet ? null : <TextBtn className="mlra mbt-2" variant="text-info" size="sm" onClick={() => setMore(!more)}>Show {!more ? "Less" : "More"}</TextBtn>}
         </div>
     </>
     )

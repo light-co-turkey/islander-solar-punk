@@ -3,13 +3,13 @@ import axios from "axios";
 import * as types from "./types";
 
 // Post Post
-export const submitPost = (createdBy, draftJsRaw, setCount) => dispatch => {
+export const submitPost = (createdBy, draftJsRaw, settings, setCount) => dispatch => {
     dispatch(setPostsIsLoaded(false))
-    axios.post(`/api/posts/createpost`, { draftJsRaw, createdBy })
+    axios.post(`/api/posts/createpost`, { draftJsRaw, createdBy, settings })
         .then(res => {
             dispatch(addToPosts(res.data))
             dispatch(setPostsIsLoaded(true))
-            setCount(1)
+            setCount(2)
         })
         .catch(err => {
             return {
@@ -34,7 +34,8 @@ export const getPost = x => dispatch => {
 // Post Post
 export const getAllPost = x => dispatch => {
     dispatch(setPostsIsLoaded(false))
-    axios.get(`/api/posts/allpost`)
+    console.log(x)
+    axios.get(`/api/posts/allpost`, { params: { userId: x } })
         .then(res => {
             dispatch(setPosts(res.data.posts));
             dispatch(setPostsIsLoaded(true))
@@ -46,7 +47,7 @@ export const getAllPost = x => dispatch => {
 export const editPost = postData => (dispatch) => {
     axios.post(`/api/posts/editpost/${postData.id}`, postData)
         .then((res) => {
-            dispatch(getAllPost());
+            dispatch(getAllPost(postData.userId));
         })
         .catch(err => console.log(err));
 };

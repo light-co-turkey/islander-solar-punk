@@ -16,6 +16,30 @@ export const infoToggle = {
     backgroundColor: "#65A3FF"
 }
 
+export const RadioInput = ({ name, label, value, isChecked, handleChange }) => {
+    const handleRadioChange = e => {
+        const { id } = e.currentTarget;
+      handleChange(id); // Send back id to radio group for comparison
+    };
+  
+    return (
+      <div className="mr-2">
+        {/* Target this input: opacity 0 */}
+        <input
+          type="radio"
+          className="custom-radio"
+          name={name}
+          id={value} // htlmlFor targets this id.
+          checked={isChecked}
+          onClick={handleRadioChange}
+        />
+        <label htmlFor={value}>
+          <span>{label}</span>
+        </label>
+      </div>
+    );
+  };
+
 export const FileUploader = props => {
     const hiddenFileInput = React.useRef(null);
 
@@ -311,7 +335,7 @@ export const PanelBtn = ({ style, fill }) => (
 
 export const RefreshArrow = ({ onClick, style, fill }) => (
     <div className="pointer df ai-c" onClick={onClick}>
-        <svg style={style} fill={!fill ? null : fill} version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" enable-background="new 0 0 512 512">
+        <svg style={style} fill={!fill ? null : fill} version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
             <g>
                 <path d="M480.6,235.6c-11.3,0-20.4,9.1-20.4,20.4c0,112.6-91.6,204.2-204.2,204.2c-112.6,0-204.2-91.6-204.2-204.2   S143.4,51.8,256,51.8c61.5,0,118.5,27.1,157.1,73.7h-70.5c-11.3,0-20.4,9.1-20.4,20.4s9.1,20.4,20.4,20.4h114.6   c11.3,0,20.4-9.1,20.4-20.4V31.4c0-11.3-9.1-20.4-20.4-20.4s-20.4,9.1-20.4,20.4v59C390.7,40.1,325.8,11,256,11   C120.9,11,11,120.9,11,256c0,135.1,109.9,245,245,245s245-109.9,245-245C501,244.7,491.9,235.6,480.6,235.6z" />
             </g>

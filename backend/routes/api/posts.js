@@ -12,13 +12,15 @@ const Post = require("../../models/Post");
 const router = express.Router();
 
 router.post("/createpost", (req, res) => {
-	const { draftJsRaw, createdBy } = req.body;
+	const { draftJsRaw, createdBy, settings } = req.body;
 	if (!draftJsRaw) {
 		return res.json({
 			error: "Please submit all the required fields.",
 		});
 	}
+	console.log(settings)
 	const post = new Post({
+		settings: settings,
 		createdBy: createdBy,
 		draftJsRaw: draftJsRaw
 	});
@@ -45,7 +47,9 @@ router.get('/get_post/:postId', (req, res) => {
 });
 
 router.get("/allpost", (req, res) => {
-	Post.find()
+	const userId = req.query.userId
+	console.log(userId)
+	Post.find({ $or: [{ 'settings.mainFeed': true }, { createdBy: userId }] })
 		.sort("-createdAt")
 		.then((data) => {
 			let posts = [];
@@ -54,7 +58,9 @@ router.get("/allpost", (req, res) => {
 					_id: item._id,
 					draftJsRaw: item.draftJsRaw,
 					createdBy: item.createdBy,
-					createdAt: item.createdAt
+					createdAt: item.createdAt,
+					settings: item.settings,
+					comments: item.comments
 				});
 			});
 			res.json({ posts });
@@ -66,11 +72,21 @@ router.get("/allpost", (req, res) => {
 
 router.post('/editpost/:postId', (req, res) => {
 	const postId = req.params.postId
-	Post.updateOne({ _id: mongoose.Types.ObjectId(postId) },
-		{
-			$set: {
+	let setFigure = () => {
+		if (!req.body.settings) {
+			return {
 				draftJsRaw: req.body.draftJsRaw
 			}
+		} else {
+			return {
+				draftJsRaw: req.body.draftJsRaw,
+				settings: req.body.settings
+			}
+		}
+	}
+	Post.updateOne({ _id: mongoose.Types.ObjectId(postId) },
+		{
+			$set: setFigure()
 		})
 		.then(() => res.json('Post updated!'))
 		.catch(err => res.status(400).json('Error: ' + err));

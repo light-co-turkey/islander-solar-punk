@@ -4,29 +4,53 @@ import { useSelector, useDispatch } from "react-redux";
 import { deletePost, editPost, getAllPost, setPosts, setPostsIsLoaded } from "../actions/postActions";
 
 import Loading from "./Loading";
-import { Editor } from "react-draft-wysiwyg";
 import { convertFromRaw, EditorState } from 'draft-js';
-import PostMetaView from './PostMetaView';
-import CustomEditor from './CustomEditor';
+import Post from './Post';
 
 const PostsList = (props) => {
+  const { count } = props
   const dispatch = useDispatch()
   const post = useSelector(state => state.post)
-  const [errorMsg, setErrorMsg] = useState('');
+  const auth = useSelector(state => state.auth)
+  const [posts, setPosts] = useState([])
 
   useEffect(() => {
-    if (post.isLoaded) { } else return dispatch(getAllPost());
-  }, []);
+    if (post.isLoaded) { handleMap().then(x => { setPosts(x) }) } else return dispatch(getAllPost(auth.user.id))
+  }, [count, post.isLoaded]);
+
+
+  let handleMap = async () => {
+    if (post.isLoaded) {
+      if (count === 1) {
+        let promise = new Promise((resolve) => {
+          resolve(
+            post.posts.filter(a => a.settings.mainFeed == true)
+          )
+        })
+        let res = await promise
+        console.log("1 res", res)
+        return res
+      }
+      else if (count === 2) {
+        let promise = new Promise((resolve) => {
+          resolve(post.posts.filter((a) => a.createdBy === auth.user.id)
+          )
+        })
+        let res = await promise
+        console.log("2 res", res)
+        return res
+      }
+    }
+  }
 
   return (
     <div>
-      {post.posts.length <= 0 ? <h3 className='mt-2'>No posts yet.</h3>
-        :
+      {!post.isLoaded ? null : /* arr.length <= 0 ? <h3 className='mt-2'>No posts yet.</h3>
+        : */
         <div>
-          {errorMsg && <p className="errorMsg">{errorMsg}</p>}
           <div className="df ai-c jc-c fw">
             {post.isLoaded ? (
-              post.posts.map((i) => {
+              posts.map((i) => {
                 const id = i._id
                 const contentState = convertFromRaw(JSON.parse(i.draftJsRaw));
                 const viewEditorState = EditorState.createWithContent(contentState);
@@ -38,11 +62,9 @@ const PostsList = (props) => {
                 }
 
                 return (
-                  <div className="dfc jc-c ai-c bra-1 b-i mt-2 m-2 p-1" key={id}>
-                    <div className="df jc-c ai-c bb-1 pb-2">
-                      <PostMetaView isLoaded={post.isLoaded} postMeta={postMeta} />
-                    </div>
-                    <CustomEditor toolbarHidden editorState={viewEditorState} readOnly={true} variant="list" />
+                  <div key={id}>
+                    <Post variant="list" isLoaded={post.isLoaded}
+                      editorState={viewEditorState} postMeta={postMeta} />
                   </div>
                 )
               }
@@ -58,4 +80,4 @@ const PostsList = (props) => {
   );
 };
 
-export default PostsList;
+export default PostsList
